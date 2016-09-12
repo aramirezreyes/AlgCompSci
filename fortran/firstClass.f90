@@ -1,0 +1,14 @@
+PROGRAM PRIMERA_CLASE
+
+REAL :: a,b,c
+INTEGER :: i,j,k
+ !!!!
+
+ PRUEBA: IF (5<6) THEN
+     PRINT*, 'Greater'
+ END IF PRUEBA
+
+
+END PROGRAM PRIMERA_CLASE
+  
+

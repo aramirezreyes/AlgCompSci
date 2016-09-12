@@ -1,0 +1,5 @@
+A=4
+echo A
+echo $A
+B=5
+expr A+B
