@@ -1,5 +1,5 @@
 set terminal postscript eps
-set output "plot4.eps"
+set output "plot1.eps"
 set title 'Numerical method '
 #set autoscale
 f(x) = (x*x)/2 - x/2

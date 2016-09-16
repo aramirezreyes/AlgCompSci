@@ -1,7 +1,7 @@
 FORTRAN = gfortran # the compiler we use
 CFLAGS  = -Wall -pedantic -c -Wno-unused-dummy-argument# options for object compilation
 LDFLAGS =  # options for link edition
-.PHONY: clean fclean plot plot_several
+.PHONY: clean fclean plot plot_several plot_times
 all : catenaire.out
 #target: dependencies
 #<TAB> command(s)
@@ -17,12 +17,14 @@ solveSystem.o solveSystem.mod function.mod function.o: function.f90 solveSystem.
 	$(FORTRAN) $(CFLAGS) function.f90 solveSystem.f90
 # clean functions
 clean:
-	rm -f *.o *.mod *~ *.eps data times *.log *Bk*
+	rm -f *.o *.mod *~ *.eps data times *.log
 fclean: clean
 	rm -f catenaire.out catenaire2.out
-plot:
+plot: data
 	gnuplot plot.gnuplot
+data: catenaire.out
+			(echo 100 | ./catenaire.out) > data
 plot_several: diferentFunctions.sh
 	sh diferentFunctions.sh
-plot_times: catenaire2.out plot_times.sh plot_times.gnuplot
+plot_times: catenaire2.out plot_times.gnuplot plot_times.sh
 	sh plot_times.sh
