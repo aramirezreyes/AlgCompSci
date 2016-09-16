@@ -1,4 +1,4 @@
-module f_function
+module function
   implicit none
 contains
   function eval_f(x) result (f)
@@ -6,4 +6,4 @@ contains
     real :: f
     f  = -1
   end function eval_f
-end module f_function
+end module function

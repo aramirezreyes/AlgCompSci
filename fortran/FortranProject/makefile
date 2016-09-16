@@ -5,12 +5,12 @@ LDFLAGS =  # options for link edition
 all : catenaire.out
 #target: dependencies
 #<TAB> command(s)
-catenaire.out: function.o call_module.o
-	$(FORTRAN) -o catenaire.out function.o call_module.o $(LDFLAGS)
-call_module.o: call_module.f90 f_function.mod
+catenaire.out: solveSystem.o  function.o call_module.o
+	$(FORTRAN) -o  catenaire.out solveSystem.o function.o call_module.o $(LDFLAGS)
+call_module.o: call_module.f90 function.mod solveSystem.mod
 	$(FORTRAN) $(CFLAGS) call_module.f90
-f_function.mod function.o: function.f90
-	$(FORTRAN) $(CFLAGS) function.f90
+solveSystem.o solveSystem.mod function.mod function.o: function.f90 solveSystem.f90
+	$(FORTRAN) $(CFLAGS) function.f90 solveSystem.f90
 # clean functions
 clean:
 	rm -f *.o *.mod *~
