@@ -14,7 +14,7 @@ contains
     As(:) = 1
     Cs(1) = 0
     As(N) = 0
-    Bs(:) = 2
+    Bs(:) = -2
     Bs(1) = 1
     Bs(N+1) = 1
   end subroutine fill_coef
@@ -26,7 +26,7 @@ contains
     Integer:: ii
     Real, dimension(N+1),intent(inout) :: Positions
     do ii=1,N+1
-       Positions(ii) = h*ii-1
+       Positions(ii) = h*(ii-1)
     end do
   end subroutine fill_Positions
 
@@ -46,13 +46,13 @@ contains
     Integer , intent(in) :: N
     Real, intent(in):: h,T
     Integer:: ii
-    Real, dimension(N+1), intent(inout) :: Forces,U_Sol
-    Real, dimension(N+1), intent(inout) :: Bs
+    Real, dimension(N+1), intent(inout) :: Forces,U_Sol, Bs
     Real, dimension(N), intent(inout) :: Cs,As
     Cs(1) = Cs(1)/Bs(1)
+Forces(2) = Forces(1)/Bs(1)
     do ii=2,N
-           Cs(ii) = Cs(ii)/(Bs(ii)-(As(ii)*Cs(ii)))
-           Forces(ii) = (Forces(ii)-(As(ii)*Forces(ii-1)))/(Bs(ii)-(As(ii)*Cs(ii)))
+           Cs(ii) = Cs(ii)/(Bs(ii)-(As(ii)*Cs(ii-1)))
+           Forces(ii) = (Forces(ii)-(As(ii)*Forces(ii-1)))/(Bs(ii)-(As(ii)*Cs(ii-1)))
               
     end do
     U_sol(N+1) = Forces(N)
