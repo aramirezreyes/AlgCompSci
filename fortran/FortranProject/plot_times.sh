@@ -1,4 +1,5 @@
-for ((i=1, j=10; i <= 5 ; i++, j=j+5))
+for (( i=1; i<=1000000; i=i+1000 ))
 do
- ($i | catenaire2.out) >> times
+ (echo $i | ./catenaire2.out) >> times
 done
+gnuplot plot_times.gnuplot

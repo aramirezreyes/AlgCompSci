@@ -38,6 +38,6 @@ make plot
 
 cp functionBk.f90 function.f90
 cp plotBk.gnuplot plot.gnuplot
-rm plot.gnuplot
+rm plotBk.gnuplot
 rm functionBk.f90
 make

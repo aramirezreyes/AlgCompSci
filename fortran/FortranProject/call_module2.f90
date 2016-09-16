@@ -2,10 +2,9 @@ program call
   use solveSystem
   implicit none
   real                 ::L,h,T,t1,t2
-  integer              ::N,ii
+  integer              ::N
 
   real,allocatable, dimension(:)   :: Forces, Displacements,Positions,U_sol,Cs,Bs,As
-  print*, "#Escriba el número de puntos"
   read*, N
   L=1
   h = L/N

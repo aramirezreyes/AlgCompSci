@@ -11,13 +11,15 @@ catenaire2.out: solveSystem.o  function.o call_module2.o
 		$(FORTRAN) -o  catenaire2.out solveSystem.o function.o call_module2.o $(LDFLAGS)
 call_module.o: call_module.f90 function.mod solveSystem.mod
 	$(FORTRAN) $(CFLAGS) call_module.f90
+call_module2.o: call_module2.f90 function.mod solveSystem.mod
+	$(FORTRAN) $(CFLAGS) call_module2.f90
 solveSystem.o solveSystem.mod function.mod function.o: function.f90 solveSystem.f90
 	$(FORTRAN) $(CFLAGS) function.f90 solveSystem.f90
 # clean functions
 clean:
-	rm -f *.o *.mod *~ *eps
+	rm -f *.o *.mod *~ *.eps data times *.log *Bk*
 fclean: clean
-	rm -f catenaire.out
+	rm -f catenaire.out catenaire2.out
 plot:
 	gnuplot plot.gnuplot
 plot_several: diferentFunctions.sh
