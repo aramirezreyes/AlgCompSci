@@ -1,0 +1,21 @@
+Fortran project. 
+
+Argel Ramírez Reyes
+
+Masters 2: Scientific computing
+
+This folder contains everything to compile and make work the fortran project.
+
+The program call_module make use of the subroutines in function.f90 and solvSystem.f90
+
+'make' will create executable files
+
+'make plot' will create the plot for the original function
+
+'make plot' will change the definition of the function on function.f90
+      and recompile everything for 3 more functions making use of a bash script called differentFunctions.sh
+'male plot_times' will use plot_times.sh to call the main program call_module2.f90 wich is a modified version of call_module.f90 that doesn't print the output
+      instead it uses the routine cpu_time and the number of elements passed to the program.
+      This scripts saves the relation N - execution time to a file and then plots it using gnuplot.
+
+The plots are generated with gnuplot scrips plot.gnuplot and plot_times.gnuplot 
