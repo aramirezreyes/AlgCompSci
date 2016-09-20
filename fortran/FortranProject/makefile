@@ -25,6 +25,6 @@ plot: data
 data: catenaire.out
 			(echo 100 | ./catenaire.out) > data
 plot_several: diferentFunctions.sh
-	sh diferentFunctions.sh
+	bash diferentFunctions.sh
 plot_times: catenaire2.out plot_times.gnuplot plot_times.sh
-	sh plot_times.sh
+	bash plot_times.sh
