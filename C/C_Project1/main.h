@@ -4,8 +4,12 @@
 #define HEADER_FILE
 
 
-#define TABSIZE  10
+#define TABSIZE  20
 
 float table[TABSIZE];
+void swap(float tab[], int i, int j);
+void print_tab(float tab[], int left, int right);
+void quicksort(float tab[],int left, int right);
 
 #endif
+
