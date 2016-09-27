@@ -4,7 +4,7 @@
 #define HEADER_FILE
 
 
-#define TABSIZE  20
+#define TABSIZE  20000
 
 float table[TABSIZE];
 void swap(float tab[], int i, int j);

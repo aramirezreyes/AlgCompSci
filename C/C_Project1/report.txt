@@ -1,0 +1,21 @@
+C project 1: 
+
+By Argel Ram'irez Reyes 
+Master in Scientific Computing - Refresher course in computer Science
+
+This directory contains the project 1 of the C part of this course.
+
+All the software is to be run from the makefile:
+
+make	 will run the example provided on the notes and also will illustrate the sorting;
+
+	 To illustrate the sorting, I decided to make plots. The for this purpose the plotSort.sh and its dependency plot_sort.gnuplot were written, the first one calls SortBigTable and saves the output on to file data.dat, and the plots the table before sorting and after sorting using gnuplot. It looks awesome.
+	 I believed it was the best way to see if a big table was really sorted.
+
+	 The other program illustrates the fact that each type has it's maximum value, so there are big quantities that a type cannot handle. For example if the one type has a maximum value of 1; if we add 1 + 1 on that type, the result will be zero, because we are dealing with quantities that the type can't handle. Long double is designed to hold bigger cuantities than float (or it has more bits dedicated for each value of that type); that's why the sum of the table with Long Double is the same until the 6th decimal value.
+
+
+make plot    If we want to make only the plot
+make RunExample	   If we want to use the example of the sum
+
+make fclean to keep only the source files

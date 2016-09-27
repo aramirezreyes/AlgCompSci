@@ -19,10 +19,8 @@ void quicksort(float tab[], int left, int right){
   int p_id,down=left,up=right;
 
 
-  p_id = left  + (right-left)*((float)rand()/(float)(RAND_MAX)); 
+  p_id = left;  /* + (right-left)*((float)rand()/(float)(RAND_MAX)); */ 
 
-  /* print_tab(table,0,TABSIZE); */
-  /* printf("Pivote = %d\n, Nueva tabla:\n",p_id); */
   while (up>down){
     if(tab[down]<tab[p_id]){
       down++;}
