@@ -19,3 +19,9 @@ make plot    If we want to make only the plot
 make RunExample	   If we want to use the example of the sum
 
 make fclean to keep only the source files
+
+
+functions.c contains the code of the functions to call, including quicksort.
+example.c contains the main program of the example that sums the table
+project1.c contains the main program used by the make plot command to illustrate the sorting.
+main.h contains some declarations
