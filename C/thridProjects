@@ -1,0 +1,11 @@
+1.- ls stat/lstat isdir etc
+readlink
+opendir,readdir,closedir
+printf
+2;- wc -l
+The idea is not to use stdio.h and just function calls; use the buffers and not read character by character
+print_int
+3. pipe
+pipe ls dir to wc -l
+
+ls dir | wc -l

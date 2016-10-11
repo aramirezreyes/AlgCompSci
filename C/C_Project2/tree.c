@@ -68,19 +68,18 @@ int main(void){
   oc = build_dictionary(test);
   get_next_max(0,1,oc, &nueval,&indice);
   tree = (bamboo_t) malloc(sizeof(struct bamboo_s));
-  get_next_max(0,1,oc, &nueval,&indice);
-   get_next_max(indice,nueval,oc, &nueval,&indice); 
-  /*  tree->symbol = indice; */
-  /* tree->freq = nueval; */
-  /* while(nueval!=0){ */
-  /*   bamboo_t newLeaf; */
-  /*   get_next_max(indice,nueval,oc, &nueval,&indice); */
-  /*   newLeaf = (bamboo_t) malloc(sizeof(struct bamboo_s)); */
-  /*   newLeaf->symbol = indice; */
-  /*   newLeaf->freq = nueval; */
-  /*   /\* printf("Símbolo: %c, índice: %d, frecuencia: %f \n",indice, indice, nueval); *\/ */
-  /*   tree->next = newLeaf; */
-  /* } */
+ 
+  tree->symbol = indice;
+  tree->freq = nueval;
+  while(nueval!=0){
+    bamboo_t newLeaf;
+    get_next_max(indice,nueval,oc, &nueval,&indice);
+    newLeaf = (bamboo_t) malloc(sizeof(struct bamboo_s));
+    newLeaf->symbol = indice;
+    newLeaf->freq = nueval;
+    printf("Símbolo: %c, índice: %d, frecuencia: %f \n",indice, indice, nueval); 
+    tree->next = newLeaf;
+  }
  
 
   return 0;
