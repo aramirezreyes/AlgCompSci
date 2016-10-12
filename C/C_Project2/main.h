@@ -3,7 +3,7 @@
 
 
 int strleng(char *word);
-void get_next_max(int prev_idx,float prev_val,float *tab, float *new_val, int *idx);
+void get_next_max(float *tab, float *new_val, int *idx);
 float *build_dictionary(char *str);
 /* void create_ordered_tree(); */
 
