@@ -23,15 +23,22 @@ int code_generator = (tree_t tree,char *out_table){ /* missing allocation and de
 }
 
 
-
+  /* Muy incipiente, pensar con calma SIN ALCOHOL */
 tree_t tree_generator(bamboo_t bamboo){
-  tree_t tree;
+  tree_t tree, aux_tree;
   tree_t = malloc((tree_t) sizeof(tree_s));
+  int a,b;
+  float fa,fb;
   while((bamboo->next->frequency)!=1){
+    a = bamboo->index;
+    fa =bamboo -> freq;
+    aux_tree = bamboo->next;
+    b = aux_tree->index;
+    fb = aux_tree-> freq;
     
 }
-
-
 }
+
+
 
 
