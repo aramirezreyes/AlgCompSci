@@ -16,21 +16,20 @@ int strleng(char *word){
 
 
 /* intended to obtain the maximum of the list that is different from the other */
-void get_next_max(int prev_idx,float prev_val,float *tab, float *new_val, int *idx){
+void get_next_max(float *tab, float *new_val, int *idx){
   float tmp;
   int id;
   *new_val = 0;
   for(id=0;id<127;id++){   /* 127 correct this shit; the condition is bad */
     /* printf("El viejo valor es: %f, y el actual es: %f\n",prev_val,tab[id]); */
-    if ((id!=prev_idx) && (prev_val>=tab[id]) && (*new_val<=tab[id])){
+    if (*new_val<=tab[id]){
 	     *idx = id;
 	     tmp = tab[id];
 	     *new_val = tmp;
-	      tab[id] = 0;
 	      /* printf("Cambiado el indice a %d y la freq a %f\n",*idx,*new_val);  */
       }
   }
-  printf("Nuevo indice: %d, Nueva frecuencia: %f\n",*idx,*new_val);
+  tab[*idx] = 0;
 }
 
 
@@ -57,14 +56,14 @@ int main(void){
   int  indice=0;
   bamboo_t tree;
   oc = build_dictionary(test);
-  get_next_max(0,1,oc, &nueval,&indice);
+  get_next_max(oc, &nueval,&indice);
   tree = (bamboo_t) malloc(sizeof(struct bamboo_s));
  
   tree->symbol = indice;
   tree->freq = nueval;
   while(nueval!=0){
     bamboo_t newLeaf;
-    get_next_max(indice,nueval,oc, &nueval,&indice);
+    get_next_max(oc, &nueval,&indice);
     newLeaf = (bamboo_t) malloc(sizeof(struct bamboo_s));
     newLeaf->symbol = indice;
     newLeaf->freq = nueval;
