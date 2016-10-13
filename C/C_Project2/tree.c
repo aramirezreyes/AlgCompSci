@@ -13,15 +13,6 @@ int strleng(char *word){
   return ii;
 }
 
-/* int not_in(*float tab,int num_elem,float to_prove){ */
-/*   int not = 1,j; */
-/*   for (j=0;j<num_elem,j++){ */
-/*     if ((tab+j)==to_prove){ */
-/*       not = 0; */
-/*       break; */
-/*     } */
-/*   }return not; */
-/* } */
 
 
 /* intended to obtain the maximum of the list that is different from the other */
