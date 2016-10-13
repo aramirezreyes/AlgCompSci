@@ -33,6 +33,24 @@ void get_next_max(float *tab, float *new_val, int *idx){
 }
 
 
+/* intended to obtain the maximum of the list that is different from the other */
+void get_next_min(float *tab, float *new_val, int *idx){
+  float tmp;
+  int id;
+  *new_val = 1;
+  for(id=0;id<127;id++){   /* 127 correct this shit; the condition is bad */
+    /* printf("El viejo valor es: %f, y el actual es: %f\n",prev_val,tab[id]); */
+    if ((*new_val>tab[id])&tab[id]>0){
+	     *idx = id;
+	     tmp = tab[id];
+	     *new_val = tmp;
+	      /* printf("Cambiado el indice a %d y la freq a %f\n",*idx,*new_val);  */
+      }
+  }
+  tab[*idx] = 1;
+}
+
+
 
 
 /* To get the relative frequencies of the characters */
