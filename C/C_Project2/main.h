@@ -4,8 +4,9 @@
 
 int strleng(char *word);
 void get_next_max(float *tab, float *new_val, int *idx);
+void get_next_in(float *tab, float *new_val, int *idx);
 float *build_dictionary(char *str);
-/* void create_ordered_tree(); */
+void create_ordered_tree(float *oc);
 
 typedef struct bamboo_s *bamboo_t;
 typedef struct leaf_s *leaf_t;
@@ -26,5 +27,13 @@ struct bamboo_s{
     char symbol;
   float freq;
   struct bamboo_s *next;
+  };
+
+struct tree_s{
+  /* leaf_t leaf; */
+    char symbol;
+  float freq;
+  struct tree_s *left;
+  struct tree_s *right;
   };
 #endif
