@@ -1,0 +1,5 @@
+#Ignore the products of emacs, te outputs of compilation
+*.[o]
+*out
+*.*~
+*.tgz
