@@ -65,30 +65,45 @@ float total = strleng(str);
   return occur;
 }
 
-void create_ordered_tree(float *oc){
+bamboo_t create_ordered_tree(float *oc){
   float nueval=0;
   int  indice=0;
-  bamboo_t tree;
+  bamboo_t bamboo,root;
   get_next_min(oc, &nueval,&indice);
-  tree = (bamboo_t) malloc(sizeof(struct bamboo_s));
- 
-  tree->symbol = indice;
-  tree->freq = nueval;
+  bamboo = (bamboo_t) malloc(sizeof(struct bamboo_s));
+  bamboo->tree = (tree_t) malloc(sizeof(struct tree_s)); 
+  bamboo->tree->symbol = indice;
+  bamboo->tree->freq = nueval;
+  root = bamboo;
   while(nueval!=1){ /* This condition leaves the last value without use beacuse it is not the real value */
     bamboo_t newLeaf;
     get_next_min(oc, &nueval,&indice);
     newLeaf = (bamboo_t) malloc(sizeof(struct bamboo_s));
-    newLeaf->symbol = indice;
-    newLeaf->freq = nueval;
+    newLeaf->tree = (tree_t) malloc(sizeof(struct tree_s));
+    (newLeaf->tree)->symbol = indice;
+    (newLeaf->tree)->freq = nueval;
     printf("Símbolo: %c, índice: %d, frecuencia: %f \n",indice, indice, nueval); 
-    tree->next = newLeaf;
+    bamboo->next = newLeaf;
+    bamboo = bamboo->next;
   }
+  return root;
 }
 
 int main(void){
   char test[300]="Bottom. What is Pyramus? A lover or a tyrant?Quince. A lover that kills himself, most gallant, for love.Bottom. That will ask some tears in the true performing of it. If I do it, let t... ";
   float *oc;
+  tree_t  tree;
+  bamboo_t  bamboo;
+  long int codes[127]={0};
   oc = build_dictionary(test);
-  create_ordered_tree(oc);
+  printf("Done building table \n");
+  bamboo =  create_ordered_tree(oc);
+  printf("Done building bamboo \n");
+  tree = tree_generator(bamboo);
+  printf("Done building tree \n");
+  free_bamboo(bamboo);
+  code_generator(1,tree,codes);
+  printf("Filled codes table\n");
+  
   return 0;
 }
