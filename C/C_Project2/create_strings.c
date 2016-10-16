@@ -3,14 +3,14 @@
 #include <stdio.h>
 #include "main.h"
 
-void code_generator(long int base,tree_t tree,long int *out_table){ /* missing allocation and deallocation */
+void code_generator(long int base,tree_t tree, int *out_table){ /* missing allocation and deallocation */
   long int out = base;
   int val;
   if (tree->right){
-    out = out*2+1;
+    out = out*2;
     code_generator(out,tree->right,out_table);}
   if (tree->left){
-    out = out*2;
+    out = out*2+1;
     code_generator(out,tree->left,out_table);}
   if (tree->symbol){
   val =  tree->symbol;

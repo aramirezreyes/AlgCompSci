@@ -3,31 +3,39 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-char encode_symbol(int symbol,long int *codes){
-  long int bit;
+char encode_symbol(int symbol,int *codes){
+  int bit;
   int bit_pos;
-  char output_char;
-    for (bit_pos=7;bit_pos>=0;bit_pos--){
+  char output_char=0;
+  printf("Incoming symbol: %c, code %c \n",symbol,codes[symbol]);
+  for (bit_pos=sizeof(int);bit_pos>=0;bit_pos--){
       bit = codes[symbol];
       output_char |= (bit<<bit_pos);
+      printf("Output char: %c \n",output_char);
       }
     return output_char;
 }
 
-void encode_file(char file_name,char output_text, long int *codes){
+/* char encode_symbol(int symbol,long int *codes){ */
+/*   char output_char; */
+/*   printf("Símbolo: %c, código: %c \n", symbol, codes[symbol]); */
+/*   output_char = codes[symbol]; */
+/*     return output_char; */
+/* } */
+
+void encode_file(char *inputFile,char *outputFile,int *codes){
   FILE *ptr_inputFile, *ptr_outputFile;
-  char buf_in[64],buf_out[64];
-  int i,coded_sym;
-  ptr_inputFile =fopen("input.txt","r");
-  ptr_outputFile =fopen("input.txt","w");
+  char buf_in[64],buf_out[64],output_char;
+  int i,coded_sym,bit,bit_pos;
+  ptr_inputFile =fopen(inputFile,"r");
+  ptr_outputFile =fopen(outputFile,"w");
   if (!ptr_inputFile)
     printf("Error");
-  while (fgets(buf_in,64, ptr_inputFile)!=NULL){
-    for(i=0; ((i<64) & (buf_in[i])); i++){
+  while (fgets(buf_in,sizeof(buf_in), ptr_inputFile)!=NULL){
+    for(i=0; i<sizeof(buf_out); i++){
       coded_sym = encode_symbol(buf_in[i], codes);
       buf_out[i] = coded_sym;
     }
-    buf_in[i+1] = '\0';
     fputs(buf_out,ptr_outputFile);
   }
   fclose(ptr_inputFile);

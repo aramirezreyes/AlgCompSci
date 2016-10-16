@@ -19,6 +19,7 @@ int strleng(char *word){
 void get_next_max(float *tab, float *new_val, int *idx){
   float tmp;
   int id;
+  
   *new_val = 0;
   for(id=0;id<127;id++){   
     /* printf("El viejo valor es: %f, y el actual es: %f\n",prev_val,tab[id]); */
@@ -55,15 +56,46 @@ void get_next_min(float *tab, float *new_val, int *idx){
 /* To get the relative frequencies of the characters */
 float * build_dictionary(char *str){
   static float occur[127]={0};
-int i=0,tmp_char;
-float total = strleng(str);
-
+  int i=0,tmp_char;
+  float total = strleng(str);
   for(i=0;str[i];i++){
     tmp_char = str[i];
-    occur[tmp_char] = occur[tmp_char] + 1/total;;
+    occur[tmp_char] = occur[tmp_char] + 1/total;
   }
   return occur;
 }
+
+/* TTTEEEEESTTIIIIIINNNNGGGG need to add an error catcher on file opening*/
+float * build_dictionary_file(char *filename){
+  FILE *ptr_file;
+  char buf[64];
+  int i,size=0,tmp_char;
+  float total;
+  static float occur[127] = {0};
+  ptr_file = fopen(filename,"r");
+  if (!ptr_file)
+    printf("Failed to open file \"%s\"  ¿does it exist?\n",filename);
+  fseek(ptr_file, 0L, SEEK_END);
+  total = ftell(ptr_file);
+  rewind(ptr_file);
+  while(fgets(buf,sizeof(buf),ptr_file)!=NULL){
+     printf("Leído: %s \n",buf); 
+    for(i=0; (i<sizeof(buf)) ; i++){
+      size++;
+    tmp_char = buf[i];
+     /* printf("Letra: %c, índice %d \n",buf[i],buf[i]);  */
+    occur[tmp_char] = occur[tmp_char] + 1;
+    }
+  }
+  for(i=0;i<127;i++){
+    occur[i] = occur[i]/size;
+    printf("Letra: %c, frecuencia %f \n",i,occur[i]);}
+  rewind(ptr_file);
+  return occur;
+}
+/* TTTEEEEESTTIIIIIINNNNGGGG*/
+
+
 
 bamboo_t create_ordered_tree(float *oc){
   float nueval=0;
@@ -88,14 +120,37 @@ bamboo_t create_ordered_tree(float *oc){
   }
   return root;
 }
+/* void decoder(char filename){ */
+/*   char  *fileName, *outputFileName; */
+/*   float *oc; */
+/*   tree_t  tree; */
+/*   bamboo_t  bamboo; */
+/*   long int codes[127]={0}; */
+/*   fileName = "text.txt"; */
+/*   outputFileName = "output.txt"; */
+/*   oc = build_dictionary_file(fileName); */
+/*   printf("Done building table \n"); */
+/*   bamboo =  create_ordered_tree(oc); */
+/*   printf("Done building bamboo \n"); */
+/*   tree = tree_generator(bamboo); */
+/*   printf("Done building tree \n"); */
+/*   free_bamboo(bamboo); */
+/* } */
+
+
+/* void save_table(*float table); */
+
 
 int main(void){
-  char test[300]="Bottom. What is Pyramus? A lover or a tyrant?Quince. A lover that kills himself, most gallant, for love.Bottom. That will ask some tears in the true performing of it. If I do it, let t... ";
+  /* char test[300]="Bottom. What is Pyramus? A lover or a tyrant?Quince. A lover that kills himself, most gallant, for love.Bottom. That will ask some tears in the true performing of it. If I do it, let t... "; */
+  char  *fileName, *outputFileName;
   float *oc;
   tree_t  tree;
   bamboo_t  bamboo;
-  long int codes[127]={0};
-  oc = build_dictionary(test);
+  int codes[127]={0};
+  fileName = "text.txt";
+  outputFileName = "output.txt";
+  oc = build_dictionary_file(fileName);
   printf("Done building table \n");
   bamboo =  create_ordered_tree(oc);
   printf("Done building bamboo \n");
@@ -104,6 +159,8 @@ int main(void){
   free_bamboo(bamboo);
   code_generator(1,tree,codes);
   printf("Filled codes table\n");
+  encode_file(fileName,outputFileName,codes);
   
   return 0;
 }
+
