@@ -13,7 +13,7 @@ bamboo_t create_ordered_tree(float *oc);
 tree_t append_to_tree(tree_t tree1, tree_t tree2);
 tree_t tree_generator(bamboo_t bamboo);
 void free_bamboo(bamboo_t bamboo);
-void code_generator(long int base,tree_t tree,int *out_table);
+void code_generator(int base,tree_t tree,int *out_table,int dist);
 void encode_file(char *file_name,char *output_text,int *codes);
 char encode_symbol(char symbol,int *codes);
 /* struct polynom_t{ */

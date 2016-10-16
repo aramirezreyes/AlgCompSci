@@ -157,7 +157,7 @@ int main(void){
   tree = tree_generator(bamboo);
   printf("Done building tree \n");
   free_bamboo(bamboo);
-  code_generator(1,tree,codes);
+  code_generator(1,tree,codes,1);
   printf("Filled codes table\n");
   encode_file(fileName,outputFileName,codes);
   
